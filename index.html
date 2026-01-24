@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jessie Math - 速率挑戰未來</title>
+
+  <!-- 控制預覽卡片那行文字（很多平台會抓這個） -->
+  <meta name="description" content="© 2025–2026 Jessie Math 捷析老師. All rights reserved.">
+  <!-- LINE / FB 常抓這個（預覽卡片的描述文字） -->
+  <meta property="og:description" content="© 2025–2026 Jessie Math 捷析老師. All rights reserved.">
+
+  <!-- ✅ 快取連結預覽（請放在 <head> 裡） -->
+  <meta name="description" content="© 2025–2026 Jessie Math 捷析老師. All rights reserved.">
+  <!-- ✅ LINE / FB 預覽用 -->
+  <meta property="og:title" content="Jessie Math - 速率挑戰未來">
+  <meta property="og:description" content="© 2025–2026 Jessie Math 捷析老師. All rights reserved.">
+  <meta property="og:type" content="website">
+
+  <!-- ✅ 預覽圖片（把檔名換成你的主題圖，例如 g6-u12.png） -->
+  <meta property="og:image" content="g6-u12.png">
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1536">
+  <meta property="og:image:alt" content="Jessie Math 遊戲封面">
+
+  <!-- ✅ 有些平台會參考 -->
+  <link rel="image_src" href="g6-u12.png">
+
+  <!-- ✅ Twitter / X（可用同一張圖） -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jessie Math - 速率挑戰未來">
+  <meta name="twitter:description" content="© 2025–2026 Jessie Math 捷析老師. All rights reserved.">
+  <meta name="twitter:image" content="g6-u12.png">
+
+  <!-- Font Awesome（只為 footer 指南針 icon） -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(255, 255, 255, 0.5);
+      --primary: #475569;
+      --accent: #6366f1;
+      --text-main: #2d3436;
+      --text-soft: #64748b;
+      --good: #10b981;
+      --bad: #f43f5e;
+      --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.04);
+      --radius-xl: 32px;
+      --radius-pill: 999px;
+      --transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+
+      /* footer tokens */
+      --footer-bg: rgba(255,255,255,0.72);
+      --footer-border: rgba(255,255,255,0.55);
+      --footer-ink: #334155;
+      --footer-muted: #64748b;
+    }
+
+    * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+    body {
+      margin: 0;
+      font-family: "PingFang TC", "Inter", system-ui, sans-serif;
+      color: var(--text-main);
+      background: var(--bg-gradient);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== Hero 區 (導覽列) ===== */
+    .topbar {
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      padding: 12px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .topbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      min-width: 240px;
+    }
+    .avatar-ring {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #e67e22; /* 橘黃色圈圈 */
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      flex: 0 0 auto;
+    }
+    .avatar-ring img { width: 85%; height: 85%; object-fit: contain; }
+    .brand-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: #34495e;
+      font-family: "Arial Black", sans-serif;
+      white-space: nowrap;
+    }
+
+    .nav-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      flex: 1 1 auto;
+    }
+    .nav-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid #e0e0e0;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      color: #555;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .nav-item svg { width: 18px; height: 18px; }
+    .nav-item:hover { background: #f8f9fa; border-color: #ccc; }
+    .nav-item.special {
+      color: #6366f1;
+      border-color: #6366f1;
+      background: #f5f5ff;
+    }
+
+    /* ===== 佈局容器 ===== */
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+      width: 100%;
+      flex: 1;
+    }
+
+    .state { display: none; }
+    .state.active { display: block; animation: fadeIn 0.5s ease both; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-soft);
+      padding: 40px;
+      margin-bottom: 24px;
+    }
+
+    /* 輸入框 */
+    .inp{
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      background: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      outline: none;
+      transition: var(--transition);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+    }
+    .inp:focus{
+      border-color: rgba(99,102,241,.7);
+      box-shadow: 0 10px 28px rgba(99,102,241,0.12);
+    }
+
+    /* ===== 第一頁 ===== */
+    .rule-box {
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 20px;
+      padding: 24px;
+      margin: 24px 0;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-soft);
+    }
+
+    /* ===== 第二頁：攤開式選擇器 ===== */
+    .lobby-grid { display: grid; grid-template-columns: 1fr 340px; gap: 24px; }
+    .option-group { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-bottom: 32px; }
+
+    .choice-btn {
+      padding: 16px;
+      border-radius: 16px;
+      border: 2px solid #e2e8f0;
+      background: #fff;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 700;
+      transition: var(--transition);
+      color: var(--text-soft);
+      user-select: none;
+    }
+    .choice-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .choice-btn.selected {
+      border-color: var(--accent);
+      background: #f5f5ff;
+      color: var(--accent);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+    }
+
+    /* ===== 第三頁：遊戲畫面與按鈕 ===== */
+    .game-hud { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; gap: 12px; flex-wrap: wrap; }
+    .hud-item { background: #fff; padding: 12px 24px; border-radius: 16px; box-shadow: var(--shadow-soft); text-align: center; min-width: 140px; }
+    .hud-label { font-size: 11px; color: var(--text-soft); font-weight: 800; letter-spacing: .06em; }
+    .hud-val { font-size: 22px; font-weight: 900; color: var(--accent); }
+
+    .question-card { background: #fff; border-radius: 24px; padding: 60px 40px; text-align: center; box-shadow: var(--shadow-soft); margin-bottom: 24px; }
+    .q-text { font-size: 28px; font-weight: 800; margin-bottom: 18px; color: var(--text-main); line-height: 1.35; }
+
+    .q-sub {
+      font-size: 14px;
+      color: var(--text-soft);
+      font-weight: 800;
+      margin-bottom: 28px;
+      letter-spacing: .02em;
+    }
+
+    .answers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .ans-btn {
+      background: #fff; border: 2px solid #f1f5f9; border-radius: 20px; padding: 22px 18px;
+      font-size: 18px; font-weight: 800; cursor: pointer; transition: var(--transition);
+      line-height: 1.25;
+      min-height: 72px;
+    }
+    .ans-btn:hover:not(:disabled) { border-color: var(--accent); background: #fdfdff; }
+    .ans-btn:disabled{ opacity: .9; cursor: not-allowed; }
+    .ans-btn.good { background: var(--good); color: #fff; border-color: var(--good); }
+    .ans-btn.bad { background: var(--bad); color: #fff; border-color: var(--bad); }
+
+    .btn {
+      padding: 16px 32px; border-radius: 16px; font-weight: 800; font-size: 16px;
+      cursor: pointer; border: none; transition: var(--transition);
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      user-select: none;
+    }
+    .btn-primary { background: #2d3436; color: white; }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-ghost { background: #fff; color: var(--text-soft); border: 1px solid #e2e8f0; }
+    .btn-ghost:hover { transform: translateY(-1px); border-color: #cbd5e1; }
+
+    /* 排行榜 */
+    .lb-item { display: flex; justify-content: space-between; padding: 14px; background: #fff; margin-bottom: 8px; border-radius: 12px; font-size: 14px; border: 1px solid #f1f5f9; }
+    .lb-item b{ color: var(--accent); }
+
+    .toast {
+      position: fixed;
+      top: 120px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 22px;
+      border-radius: 99px;
+      color: white;
+      font-weight: 900;
+      z-index: 2000;
+      display: none;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+      max-width: calc(100vw - 24px);
+      text-align: center;
+      line-height: 1.3;
+      letter-spacing: .02em;
+    }
+
+    /* ===== Footer (依你提供的結構) ===== */
+    footer{
+      width: 100%;
+      padding: 18px 16px 26px;
+    }
+    .footer-pill{
+      max-width: 1100px;
+      margin: 0 auto;
+      background: var(--footer-bg);
+      border: 1px solid var(--footer-border);
+      border-radius: 999px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(10px);
+    }
+    .footer-left, .footer-right{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .footer-dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #a78bfa);
+      box-shadow: 0 0 0 4px rgba(99,102,241,0.10);
+      flex: 0 0 auto;
+    }
+    .footer-copy{
+      font-weight: 900;
+      color: var(--footer-ink);
+      font-size: 13px;
+      letter-spacing: .01em;
+      white-space: nowrap;
+    }
+    .footer-icon{
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      color: var(--accent);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+      flex: 0 0 auto;
+    }
+    .footer-tagline{
+      font-weight: 900;
+      color: var(--footer-muted);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    /* RWD */
+    @media (max-width: 980px){
+      .lobby-grid{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px){
+      .container{ margin: 18px auto; padding: 0 14px; }
+      .card{ padding: 22px; border-radius: 24px; }
+      .question-card{ padding: 26px 18px; border-radius: 22px; }
+      .q-text{ font-size: 20px; }
+      .answers-grid{ grid-template-columns: 1fr; }
+      .hud-item{ min-width: 128px; padding: 10px 14px; border-radius: 14px; }
+      .hud-val{ font-size: 20px; }
+      .nav-item{ padding: 8px 14px; font-size: 14px; }
+      .brand-title{ font-size: 20px; }
+      .avatar-ring{ width: 42px; height: 42px; }
+      .btn{ padding: 14px 18px; border-radius: 14px; }
+
+      footer{ padding: 14px 12px 22px; }
+      .footer-pill{
+        border-radius: 24px;   /* 手機不硬塞膨脹 pill，改成舒服卡片 */
+        padding: 14px 14px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .footer-copy, .footer-tagline{ white-space: normal; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="https://jessiemath0703-chu.github.io/website2/" class="brand">
+        <div class="avatar-ring"><img src="JESSIEMATH-Q.png" alt="Logo" /></div>
+        <span class="brand-title">Jessie Math</span>
+      </a>
+      <div class="nav-group">
+        <a href="https://jessiemath0703-chu.github.io/website2/" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          首頁
+        </a>
+        <a href="https://jessiemath0703-chu.github.io/Game-Lobby/" class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          遊戲大廳
+        </a>
+        <a href="https://jessiemath0703-chu.github.io/Game-Lobby/#g6-u12" class="nav-item special">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          六年級速率
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div id="stateStart" class="state active">
+      <div class="card">
+        <h2 style="margin:0; font-size: 32px;">挑戰者登入</h2>
+        <div class="rule-box">
+          <b>📜 挑戰指南</b><br>
+          • 每一關限時 <b>60 秒</b>。<br>
+          • 答對題目：時間 <b>+5 秒</b>。<br>
+          • 答錯題目：時間 <b>-5 秒</b>，並顯示 <b>正確答案</b>。<br>
+          • 題型會依「關卡 × 難易度」隨機變化。<br>
+          • 最終積分將紀錄於本機排行榜中。
+        </div>
+        <input id="playerName" class="inp" type="text" maxlength="16" placeholder="請輸入挑戰者暱稱..." style="margin-bottom:20px;" />
+        <button id="btnToLobby" class="btn btn-primary" style="width:100%;">進入挑戰大廳</button>
+      </div>
+    </div>
+
+    <div id="stateLobby" class="state">
+      <div class="lobby-grid">
+        <div class="card">
+          <h3 style="margin:0 0 20px;">1. 選擇關卡</h3>
+          <div id="levelGrid" class="option-group">
+            <div class="choice-btn selected" data-val="1">認識速率</div>
+            <div class="choice-btn" data-val="2">關係式應用</div>
+            <div class="choice-btn" data-val="3">單位換算</div>
+            <div class="choice-btn" data-val="4">平均速率</div>
+            <div class="choice-btn" data-val="5">生活應用</div>
+          </div>
+
+          <h3 style="margin:0 0 20px;">2. 難易度</h3>
+          <div id="diffGrid" class="option-group">
+            <div class="choice-btn" data-val="easy">悠哉慢跑</div>
+            <div class="choice-btn selected" data-val="normal">節奏剛好</div>
+            <div class="choice-btn" data-val="hard">風一樣快</div>
+          </div>
+
+          <div style="display:flex; gap:12px; margin-top:20px; flex-wrap:wrap;">
+            <button id="btnStartGame" class="btn btn-primary" style="flex:1; min-width: 180px;">開始挑戰</button>
+            <button id="btnBackToStart" class="btn btn-ghost" style="min-width: 140px;">回上一頁</button>
+          </div>
+        </div>
+
+        <aside class="card" style="padding:30px;">
+          <h3 style="margin:0 0 20px;">🏆 排行榜</h3>
+          <div id="lb"></div>
+        </aside>
+      </div>
+    </div>
+
+    <div id="stateGame" class="state">
+      <div class="game-hud">
+        <div class="hud-item">
+          <div class="hud-label">剩餘時間</div>
+          <div id="hudTime" class="hud-val">60</div>
+        </div>
+        <div class="hud-item">
+          <div class="hud-label">得分</div>
+          <div id="hudScore" class="hud-val">0</div>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button id="btnPause" class="btn btn-ghost" style="padding:10px 20px;">暫停</button>
+          <button id="btnRestartInGame" class="btn btn-ghost" style="padding:10px 20px;">重來</button>
+        </div>
+      </div>
+
+      <div id="toast" class="toast"></div>
+
+      <div class="question-card">
+        <div id="qText" class="q-text">準備中...</div>
+        <div id="qSub" class="q-sub"> </div>
+
+        <div id="mcqArea" class="answers-grid">
+          <button class="ans-btn" id="a0"></button>
+          <button class="ans-btn" id="a1"></button>
+          <button class="ans-btn" id="a2"></button>
+          <button class="ans-btn" id="a3"></button>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <button id="btnBackMenu" class="btn btn-ghost">放棄挑戰</button>
+      </div>
+    </div>
+
+    <div id="stateResult" class="state">
+      <div class="card" style="text-align:center;">
+        <h2 style="font-size:48px; color:var(--accent);">挑戰結果</h2>
+        <div id="resultText" style="line-height:2; margin:30px 0; font-size:20px; font-weight:800;"></div>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+          <button id="btnAgain" class="btn btn-primary">再玩一次</button>
+          <button onclick="show('stateLobby')" class="btn btn-ghost">回到大廳</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ✅ 留一組：Footer（你指定的那一組） -->
+  <footer>
+        <div class="footer-pill">
+            <div class="footer-left">
+                <div class="footer-dot" aria-hidden="true"></div>
+                <div class="footer-copy">© 2025–2026 Jessie Math 捷析老師. All rights reserved.</div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-icon" aria-hidden="true"><i class="fas fa-compass"></i></div>
+                <div class="footer-tagline">數學不迷路，Jessie 帶你走向理解。</div>
+            </div>
+        </div>
+    </footer>
+
+  <div id="pauseOverlay" class="overlay" style="position:fixed; inset:0; background:rgba(0,0,0,0.4); backdrop-filter:blur(8px); display:none; place-items:center; z-index:3000;">
+    <div class="card" style="text-align:center; min-width:280px;">
+      <h2>暫停中</h2>
+      <button id="btnResume" class="btn btn-primary" style="width:100%;">繼續遊戲</button>
+    </div>
+  </div>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const state = {
+      name: "", level: 1, diff: "normal", time: 60, score: 0,
+      correct: 0, wrong: 0, running: false, paused: false,
+      timerId: null, currentQ: null, lock: false
+    };
+
+    // 頁面切換
+    function show(id) {
+      document.querySelectorAll('.state').forEach(s => s.classList.remove('active'));
+      $(id).classList.add('active');
+    }
+
+    // 初始化攤開按鈕點擊事件
+    function initChoiceBtns(containerId, stateKey) {
+      const btns = $(containerId).querySelectorAll('.choice-btn');
+      btns.forEach(btn => {
+        btn.onclick = () => {
+          btns.forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+          state[stateKey] = btn.dataset.val;
+        };
+      });
+    }
+    initChoiceBtns('levelGrid', 'level');
+    initChoiceBtns('diffGrid', 'diff');
+
+    // 進入大廳：強制輸入名字
+    $("btnToLobby").onclick = () => {
+      const n = $("playerName").value.trim();
+      if(!n) return alert("請輸入暱稱！");
+      state.name = n;
+      show("stateLobby");
+      renderLB();
+    };
+
+    $("btnBackToStart").onclick = () => show("stateStart");
+    $("btnStartGame").onclick = () => startGame();
+    $("btnRestartInGame").onclick = () => { if(confirm("確定要重新開始本局？")) startGame(); };
+
+    // 難易度參數
+    function diffCfg() {
+      if(state.diff === "easy") return { vMin: 5, vMax: 30, tMin: 2, tMax: 10, dMin: 20, dMax: 400 };
+      if(state.diff === "hard") return { vMin: 18, vMax: 80, tMin: 3, tMax: 25, dMin: 80, dMax: 3000 };
+      return { vMin: 10, vMax: 55, tMin: 2, tMax: 18, dMin: 50, dMax: 1200 };
+    }
+
+    function startGame() {
+      state.time = 60;
+      state.score = 0;
+      state.correct = 0;
+      state.wrong = 0;
+      state.running = true;
+      state.paused = false;
+      state.lock = false;
+
+      show("stateGame");
+      updateHUD();
+      newQuestion();
+
+      clearInterval(state.timerId);
+      state.timerId = setInterval(() => {
+        if(!state.running || state.paused) return;
+        state.time--;
+        $("hudTime").textContent = state.time;
+        if(state.time <= 0) endGame();
+      }, 1000);
+    }
+
+    function updateHUD() {
+      $("hudScore").textContent = state.score;
+      $("hudTime").textContent = state.time;
+    }
+
+    // 小工具
+    const randInt = (a,b)=> Math.floor(Math.random()*(b-a+1))+a;
+    const shuffle = (arr)=> arr.map(v=>({v, r:Math.random()})).sort((a,b)=>a.r-b.r).map(o=>o.v);
+
+    function formatUnit(val, unit){
+      const x = (Math.abs(val) < 1e-9) ? 0 : val;
+      return `${x}${unit}`;
+    }
+
+    // 生成「合理」干擾選項
+    function makeChoices(ans, unit, mode="int"){
+      let base = ans;
+      let opts = new Set([base]);
+
+      const tryAdd = (x)=>{
+        if(mode==="int") x = Math.round(x);
+        if(mode==="oneDec") x = Math.round(x*10)/10;
+        if(mode==="twoDec") x = Math.round(x*100)/100;
+        if(!Number.isFinite(x)) return;
+        opts.add(x);
+      };
+
+      tryAdd(base + (mode==="int"? randInt(2,20) : 0.5));
+      tryAdd(base - (mode==="int"? randInt(2,15) : 0.5));
+      tryAdd(base * 2);
+      tryAdd(base / 2);
+      tryAdd(base * 1.5);
+      tryAdd(base * 0.8);
+
+      while(opts.size < 4){
+        const bump = (mode==="int") ? randInt(-30,30) : (randInt(-20,20)/10);
+        tryAdd(base + bump);
+      }
+
+      const list = shuffle(Array.from(opts)).slice(0,4);
+      return list.map(x => ({ val:x, label: formatUnit(x, unit) }));
+    }
+
+    // 題庫：依「關卡」走不同題型池
+    function genQ_level1(){ // 認識速率
+      const cfg = diffCfg();
+      const type = randInt(1,3);
+
+      if(type === 1){ // 求距離
+        const v = randInt(cfg.vMin, cfg.vMax);
+        const t = randInt(cfg.tMin, cfg.tMax);
+        const ans = v * t;
+        return { text: `若速率為 ${v} m/s，時間為 ${t} 秒，距離是多少？`, sub: `提示：距離 = 速率 × 時間`, ans, unit: " 公尺", mode:"int" };
+      }
+      if(type === 2){ // 求速率
+        const t = randInt(cfg.tMin, cfg.tMax);
+        const v = randInt(cfg.vMin, cfg.vMax);
+        const d = v * t;
+        return { text: `一段路程 ${d} 公尺，走了 ${t} 秒，速率是多少？`, sub: `提示：速率 = 距離 ÷ 時間`, ans: v, unit: " m/s", mode:"int" };
+      }
+      // 求時間
+      const v = randInt(cfg.vMin, cfg.vMax);
+      const t = randInt(cfg.tMin, cfg.tMax);
+      const d = v * t;
+      return { text: `速率為 ${v} m/s，距離為 ${d} 公尺，時間是多少秒？`, sub: `提示：時間 = 距離 ÷ 速率`, ans: t, unit: " 秒", mode:"int" };
+    }
+
+    function genQ_level2(){ // 關係式應用
+      const cfg = diffCfg();
+      const type = randInt(1,3);
+
+      if(type === 1){
+        const vA = randInt(cfg.vMin, cfg.vMax);
+        const vB = randInt(cfg.vMin, cfg.vMax);
+        const t = randInt(cfg.tMin, cfg.tMax);
+        const ans = Math.abs(vA*t - vB*t);
+        return { text: `甲速率 ${vA} m/s，乙速率 ${vB} m/s，同走 ${t} 秒，兩人距離差多少公尺？`, sub:`提示：先算各自距離，再相減`, ans, unit:" 公尺", mode:"int" };
+      }
+      if(type === 2){
+        const vSlow = randInt(cfg.vMin, cfg.vMax-5);
+        const vFast = randInt(vSlow+5, cfg.vMax+10);
+        const diff = vFast - vSlow;
+        const t = randInt(2,20);
+        const lead = diff * t;
+        return { text: `乙比甲先前進 ${lead} 公尺，甲速率 ${vFast} m/s、乙速率 ${vSlow} m/s，同方向前進，甲幾秒追上乙？`, sub:`提示：追及時間 = 距離差 ÷ 速率差`, ans:t, unit:" 秒", mode:"int" };
+      }
+      const v1 = randInt(cfg.vMin, cfg.vMax);
+      const k = randInt(2,4);
+      const v2 = v1 * k;
+      const t = randInt(cfg.tMin, cfg.tMax);
+      return { text:`甲速率 ${v1} m/s，乙速率是甲的 ${k} 倍，若乙走了 ${t} 秒，乙走了多少公尺？`, sub:`提示：乙速率 = 甲速率 × 倍數，再算距離`, ans:v2*t, unit:" 公尺", mode:"int" };
+    }
+
+    function genQ_level3(){ // 單位換算
+      const type = randInt(1,3);
+
+      if(type === 1){
+        const base = [18, 36, 54, 72, 90, 108];
+        const v = base[randInt(0, base.length-1)];
+        const ans = Math.round((v/3.6)*10)/10;
+        return { text:`將速率 ${v} km/h 換算成 m/s，約是多少？`, sub:`提示：km/h ÷ 3.6 = m/s（取到小數第 1 位）`, ans, unit:" m/s", mode:"oneDec" };
+      }
+      if(type === 2){
+        const base = [5, 8, 10, 12.5, 15, 20];
+        const v = base[randInt(0, base.length-1)];
+        const ans = Math.round((v*3.6)*10)/10;
+        return { text:`將速率 ${v} m/s 換算成 km/h，約是多少？`, sub:`提示：m/s × 3.6 = km/h（取到小數第 1 位）`, ans, unit:" km/h", mode:"oneDec" };
+      }
+      const mps = randInt(2,20);
+      const v = mps * 60;
+      return { text:`若速率是 ${v} 公尺/分鐘，換算成 m/s 是多少？`, sub:`提示：1 分鐘 = 60 秒，所以 ÷ 60`, ans:mps, unit:" m/s", mode:"int" };
+    }
+
+    function genQ_level4(){ // 平均速率
+      const cfg = diffCfg();
+      const type = randInt(1,3);
+
+      if(type === 1){
+        const v1 = randInt(cfg.vMin, cfg.vMax);
+        const v2 = randInt(cfg.vMin, cfg.vMax);
+        const t1 = randInt(cfg.tMin, cfg.tMax);
+        const t2 = randInt(cfg.tMin, cfg.tMax);
+        const d1 = v1 * t1;
+        const d2 = v2 * t2;
+        const ans = Math.round(((d1+d2)/(t1+t2))*10)/10;
+        return { text:`甲先以 ${v1} m/s 走 ${t1} 秒，再以 ${v2} m/s 走 ${t2} 秒，平均速率約多少 m/s？`, sub:`提示：平均速率 = 總距離 ÷ 總時間（取到小數第 1 位）`, ans, unit:" m/s", mode:"oneDec" };
+      }
+      if(type === 2){
+        const d = randInt(100, 400) * (state.diff==="hard"? 4 : 1);
+        const vGo = randInt(cfg.vMin, cfg.vMax);
+        const vBack = randInt(cfg.vMin, cfg.vMax);
+        const tGo = d / vGo;
+        const tBack = d / vBack;
+        const ans = Math.round(((2*d)/(tGo+tBack))*10)/10;
+        return { text:`同一段距離來回各 ${d} 公尺，去程速率 ${vGo} m/s，回程速率 ${vBack} m/s，平均速率約多少 m/s？`, sub:`提示：平均速率 = 總距離 ÷ 總時間（取到小數第 1 位）`, ans, unit:" m/s", mode:"oneDec" };
+      }
+      const t1 = randInt(cfg.tMin, cfg.tMax);
+      const t2 = randInt(cfg.tMin, cfg.tMax);
+      const v1 = randInt(cfg.vMin, cfg.vMax);
+      const v2 = randInt(cfg.vMin, cfg.vMax);
+      const d1 = v1 * t1;
+      const d2 = v2 * t2;
+      const ans = Math.round(((d1+d2)/(t1+t2))*10)/10;
+      return { text:`先走 ${d1} 公尺用 ${t1} 秒，再走 ${d2} 公尺用 ${t2} 秒，平均速率約多少 m/s？`, sub:`提示：平均速率 = (d1+d2) ÷ (t1+t2)（取到小數第 1 位）`, ans, unit:" m/s", mode:"oneDec" };
+    }
+
+    function genQ_level5(){ // 生活應用
+      const cfg = diffCfg();
+      const type = randInt(1,3);
+
+      if(type === 1){
+        const minutes = randInt(10, 60);
+        const speed = randInt(10, 30) + (state.diff==="hard"? randInt(0,10):0);
+        const dist = Math.round((speed * (minutes/60))*10)/10;
+        return { text:`腳踏車騎了 ${dist} 公里，用了 ${minutes} 分鐘，平均速率約多少 km/h？`, sub:`提示：先把分鐘換成小時，再用 距離 ÷ 時間（取到小數第 1 位）`, ans: Math.round(speed*10)/10, unit:" km/h", mode:"oneDec" };
+      }
+      if(type === 2){
+        const v = randInt(cfg.vMin, cfg.vMax);
+        const t = randInt(cfg.tMin, cfg.tMax);
+        const d = v * t;
+        return { text:`晨跑速率約 ${v} m/s，若要跑完 ${d} 公尺，大約要幾秒？`, sub:`提示：時間 = 距離 ÷ 速率`, ans:t, unit:" 秒", mode:"int" };
+      }
+      const v = [36, 45, 54, 60, 72][randInt(0,4)];
+      const minutes = [10, 12, 15, 18, 20][randInt(0,4)];
+      const dist = Math.round((v * (minutes/60))*10)/10;
+      return { text:`公車時速約 ${v} km/h，若目的地距離 ${dist} 公里，大約要幾分鐘到？`, sub:`提示：時間(小時)=距離÷速率，再換成分鐘`, ans: minutes, unit:" 分鐘", mode:"int" };
+    }
+
+    function generateQuestionByLevel(){
+      const lv = String(state.level);
+      if(lv === "1") return genQ_level1();
+      if(lv === "2") return genQ_level2();
+      if(lv === "3") return genQ_level3();
+      if(lv === "4") return genQ_level4();
+      return genQ_level5();
+    }
+
+    function newQuestion() {
+      state.lock = false;
+
+      const q = generateQuestionByLevel();
+      state.currentQ = q;
+
+      $("qText").textContent = q.text;
+      $("qSub").textContent = q.sub || "";
+
+      const opts = makeChoices(q.ans, q.unit, q.mode);
+      if(!opts.some(o => String(o.val) === String(q.ans))){
+        opts[0] = { val: q.ans, label: formatUnit(q.ans, q.unit) };
+      }
+      const final = shuffle(opts);
+
+      [0,1,2,3].forEach(i => {
+        const btn = $(`a${i}`);
+        btn.textContent = final[i].label;
+        btn.className = "ans-btn";
+        btn.disabled = false;
+        btn.onclick = () => checkAns(final[i].val, i, final);
+      });
+    }
+
+    function lockAnswers(){
+      [0,1,2,3].forEach(i => { $(`a${i}`).disabled = true; });
+    }
+
+    function highlightCorrect(final){
+      final.forEach((o, i)=>{
+        if(String(o.val) === String(state.currentQ.ans)){
+          $(`a${i}`).classList.add("good");
+        }
+      });
+    }
+
+    function checkAns(val, idx, final) {
+      if(state.lock) return;
+      state.lock = true;
+
+      lockAnswers();
+
+      const q = state.currentQ;
+      const correct = (String(val) === String(q.ans));
+
+      if(correct) {
+        state.score += 10;
+        state.time += 5;
+        state.correct++;
+        $(`a${idx}`).classList.add("good");
+        showToast("答對了！+5 秒 ✨", "var(--good)");
+      } else {
+        state.time -= 5;
+        state.wrong++;
+        $(`a${idx}`).classList.add("bad");
+        highlightCorrect(final);
+        const ansLabel = formatUnit(q.ans, q.unit);
+        showToast(`答錯了！正確答案：${ansLabel}（-5 秒）`, "var(--bad)");
+      }
+
+      updateHUD();
+
+      setTimeout(() => {
+        if(state.running && state.time > 0) newQuestion();
+        else if(state.time <= 0) endGame();
+      }, 950);
+    }
+
+    function showToast(msg, color) {
+      const t = $("toast");
+      t.textContent = msg;
+      t.style.background = color;
+      t.style.display = "block";
+      clearTimeout(t._tid);
+      t._tid = setTimeout(() => t.style.display = "none", 1000);
+    }
+
+    function endGame() {
+      state.running = false;
+      clearInterval(state.timerId);
+      saveLB();
+      $("resultText").innerHTML =
+        `挑戰者：${state.name}<br>`+
+        `最終得分：${state.score}<br>`+
+        `正確：${state.correct} 題 | 錯誤：${state.wrong} 題`;
+      show("stateResult");
+    }
+
+    function saveLB() {
+      let data = JSON.parse(localStorage.getItem("SPEED_LB") || "[]");
+      data.push({ name: state.name, score: state.score });
+      data.sort((a,b) => b.score - a.score);
+      localStorage.setItem("SPEED_LB", JSON.stringify(data.slice(0, 8)));
+    }
+
+    function renderLB() {
+      let data = JSON.parse(localStorage.getItem("SPEED_LB") || "[]");
+      $("lb").innerHTML = data.map(i =>
+        `<div class="lb-item"><span>${i.name}</span><b>${i.score} 分</b></div>`
+      ).join('') || "尚無紀錄";
+    }
+
+    $("btnBackMenu").onclick = () => {
+      if(confirm("確定放棄本局？")) {
+        state.running = false;
+        clearInterval(state.timerId);
+        show("stateLobby");
+      }
+    };
+    $("btnAgain").onclick = () => startGame();
+
+    $("btnPause").onclick = () => {
+      state.paused = true;
+      $("pauseOverlay").style.display = "grid";
+    };
+    $("btnResume").onclick = () => {
+      state.paused = false;
+      $("pauseOverlay").style.display = "none";
+    };
+  </script>
+</body>
+</html>
+
